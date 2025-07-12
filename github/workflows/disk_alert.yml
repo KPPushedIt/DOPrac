@@ -1,0 +1,18 @@
+name: Disk Usage Health Check
+
+on:
+  workflow_dispatch:     # Manual trigger from GitHub UI
+  schedule:
+    - cron: '0 6 * * *'  # Runs every day at 6 AM UTC
+
+jobs:
+  run-alert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run disk_alert.sh
+        run: bash disk_alert.sh
+
